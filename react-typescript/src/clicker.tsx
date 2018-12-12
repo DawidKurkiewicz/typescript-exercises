@@ -1,9 +1,8 @@
 import * as React from 'react'
 
 interface ClickerProps {
-    startClickAmount: number
+    startClickAmount?: number
 }
-
 
 interface ClickerState {
     amountOfClicks: number
@@ -11,17 +10,33 @@ interface ClickerState {
 
 export default class Clicker extends React.Component<ClickerProps, ClickerState> {
     constructor(props: ClickerProps) {
-        super(props);
+        super(props)
         this.state = {
-            amountOfClicks: props.startClickAmount
+            amountOfClicks: props.startClickAmount!
         }
     }
-    public render () {
-        return(
-            <h1>
-                Number of Clicks: {this.state.amountOfClicks}
-            </h1>
+
+    public increment() {
+        this.setState({ amountOfClicks: this.state.amountOfClicks + 1 })
+    }
+
+
+    public decrement() {
+        this.setState({ amountOfClicks: this.state.amountOfClicks - 1 })
+    }
+
+    public render() {
+        return (
+            <div>
+                <h1>
+                    Number of Clicks: {this.state.amountOfClicks}
+                </h1>
+                <button
+                    onClick={this.increment}>+</button>
+                <button
+                    onClick={this.decrement}>-</button>
+            </div>
         )
     }
-}
 
+}
