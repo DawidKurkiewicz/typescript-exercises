@@ -22,7 +22,7 @@ export default class Clicker extends React.Component<ClickerProps, ClickerState>
 
 
     public decrement() {
-        this.setState({ amountOfClicks: this.state.amountOfClicks - 1 })
+        this.setState({ amountOfClicks: Math.max(this.state.amountOfClicks - 1, 0 ) })
     }
 
     public render() {
